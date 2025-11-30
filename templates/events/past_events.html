@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-container">
+    <div class="hero-section">
+        <h1 class="hero-title">Past Events</h1>
+        <p class="hero-subtitle">Relive the memories from our previous events</p>
+        <p class="hero-subtitle-ru">Воспоминания о наших предыдущих событиях</p>
+    </div>
+
+    <div class="events-grid">
+        <!-- Event 1 -->
+        <div class="event-card">
+            <div class="event-image concert">🎵 Concert</div>
+            <h3 class="event-title">Summer Music Festival</h3>
+            <h4 class="event-title-ru">Летний Музыкальный Фестиваль</h4>
+            <div class="event-date">📅 August 15, 2023</div>
+            <p class="event-description">An unforgettable night of music and celebration under the stars</p>
+            <p class="event-description" style="opacity: 0.8; font-style: italic;">Незабываемая ночь музыки и праздника под звездами</p>
+            <a href="{% url 'events:event_detail' 7 %}" class="btn">View Photos / Смотреть фото</a>
+        </div>
+
+        <!-- Event 2 -->
+        <div class="event-card">
+            <div class="event-image tech">💻 Tech</div>
+            <h3 class="event-title">Tech Conference 2023</h3>
+            <h4 class="event-title-ru">Техническая Конференция 2023</h4>
+            <div class="event-date">📅 June 20, 2023</div>
+            <p class="event-description">Innovation and technology showcase with industry leaders</p>
+            <p class="event-description" style="opacity: 0.8; font-style: italic;">Демонстрация инноваций и технологий с лидерами отрасли</p>
+            <a href="{% url 'events:event_detail' 8 %}" class="btn">View Photos / Смотреть фото</a>
+        </div>
+
+        <!-- Event 3 -->
+        <div class="event-card">
+            <div class="event-image food">🍕 Food</div>
+            <h3 class="event-title">Food & Wine Festival</h3>
+            <h4 class="event-title-ru">Фестиваль Еды и Вина</h4>
+            <div class="event-date">📅 May 5, 2023</div>
+            <p class="event-description">Culinary delights and fine wines from around the world</p>
+            <p class="event-description" style="opacity: 0.8; font-style: italic;">Кулинарные изыски и изысканные вина со всего мира</p>
+            <a href="{% url 'events:event_detail' 9 %}" class="btn">View Photos / Смотреть фото</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

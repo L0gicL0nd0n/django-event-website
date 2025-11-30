@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-container">
+    <div class="event-card" style="max-width: 800px; margin: 0 auto;">
+        {% if event_id == 1 %}
+        <div class="event-image tech" style="height: 300px; font-size: 2rem;">🚀 AI Innovation Summit</div>
+        <h1 class="event-title">AI Innovation Summit</h1>
+        <h2 class="event-title-ru">Саммит Инноваций ИИ</h2>
+        <div class="event-date">📅 March 15, 2024 • 9:00 AM - 6:00 PM</div>
+        <div class="event-meta">
+            <span>📍 Tech Convention Center, 123 Innovation Street</span>
+            <span class="event-type">$149</span>
+        </div>
+        <p class="event-description">Join us for a groundbreaking summit exploring the latest advancements in artificial intelligence. Featuring keynote speakers from leading tech companies, hands-on workshops, and networking opportunities with AI professionals and enthusiasts.</p>
+        <p class="event-description" style="opacity: 0.8; font-style: italic; margin-top: 1rem;">Присоединяйтесь к нам на революционном саммите, посвященном последним достижениям в области искусственного интеллекта. В программе: выступления ключевых спикеров из ведущих технологических компаний, практические мастер-классы и возможности для нетворкинга с профессионалами и энтузиастами ИИ.</p>
+
+        {% elif event_id == 2 %}
+        <div class="event-image concert" style="height: 300px; font-size: 2rem;">🎸 Rock the City Festival</div>
+        <h1 class="event-title">Rock the City Festival</h1>
+        <h2 class="event-title-ru">Фестиваль Рок-Музыки</h2>
+        <div class="event-date">📅 March 22, 2024 • 7:00 PM - 11:00 PM</div>
+        <div class="event-meta">
+            <span>📍 City Stadium, 456 Music Avenue</span>
+            <span class="event-type">$75</span>
+        </div>
+        <p class="event-description">Experience an unforgettable night of rock music featuring international headliners and local talent. Food trucks, merchandise stands, and an electrifying atmosphere await!</p>
+        <p class="event-description" style="opacity: 0.8; font-style: italic; margin-top: 1rem;">Ощутите незабываемую ночь рок-музыки с участием международных хедлайнеров и местных талантов. Фудтраки, стенды с мерчендайзом и электрическая атмосфера ждут вас!</p>
+
+        {% else %}
+        <div class="event-image tech" style="height: 300px; font-size: 2rem;">🎉 Event Details</div>
+        <h1 class="event-title">Event Details</h1>
+        <h2 class="event-title-ru">Детали Мероприятия</h2>
+        <div class="event-date">📅 Coming Soon</div>
+        <div class="event-meta">
+            <span>📍 Location TBA</span>
+            <span class="event-type">Info</span>
+        </div>
+        <p class="event-description">Detailed information about this event will be available soon. Stay tuned for updates!</p>
+        <p class="event-description" style="opacity: 0.8; font-style: italic; margin-top: 1rem;">Подробная информация об этом мероприятии скоро будет доступна. Следите за обновлениями!</p>
+        {% endif %}
+
+        <div style="display: flex; gap: 1rem; margin-top: 2rem; flex-wrap: wrap;">
+            <a href="{% url 'events:home' %}" class="btn btn-back">← Back to Events / Назад к мероприятиям</a>
+            <a href="{% url 'events:buy_tickets' event_id %}" class="btn">Buy Tickets / Купить билеты</a>
+        </div>
+    </div>
+</div>
+{% endblock %}

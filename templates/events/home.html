@@ -1,0 +1,271 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="main-container">
+    <!-- Hero Section with Gradient Background -->
+    <div class="hero-section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 80px 20px; text-align: center; border-radius: 0 0 30px 30px;">
+        <h1 class="hero-title" style="font-size: 3.5rem; margin-bottom: 20px; font-weight: 700;">Discover Amazing Events</h1>
+        <p class="hero-subtitle" style="font-size: 1.3rem; margin-bottom: 10px; opacity: 0.9;">Find your next unforgettable experience</p>
+        <p class="hero-subtitle-ru" style="font-size: 1.1rem; opacity: 0.8;">Найдите ваше следующее незабываемое мероприятие</p>
+        
+        <!-- Search Bar -->
+        <div class="search-container" style="max-width: 600px; margin: 40px auto 0;">
+            <div class="search-bar" style="display: flex; background: white; border-radius: 50px; padding: 10px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                <input type="text" id="searchInput" placeholder="Search events, categories, locations..." style="flex: 1; border: none; outline: none; padding: 15px 20px; font-size: 1rem; border-radius: 50px;">
+                <button onclick="searchEvents()" style="background: #667eea; color: white; border: none; padding: 15px 30px; border-radius: 50px; cursor: pointer; font-weight: 600; transition: all 0.3s ease;">Search</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Filter Categories -->
+    <div class="filter-categories" style="display: flex; justify-content: center; gap: 15px; margin: 40px 0; flex-wrap: wrap;">
+        <button class="filter-btn active" onclick="filterEvents('all')" style="background: #667eea; color: white; border: none; padding: 12px 25px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">All Events</button>
+        <button class="filter-btn" onclick="filterEvents('music')" style="background: #f8f9fa; border: 2px solid #e9ecef; padding: 12px 25px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">🎸 Music</button>
+        <button class="filter-btn" onclick="filterEvents('tech')" style="background: #f8f9fa; border: 2px solid #e9ecef; padding: 12px 25px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">🚀 Tech</button>
+        <button class="filter-btn" onclick="filterEvents('food')" style="background: #f8f9fa; border: 2px solid #e9ecef; padding: 12px 25px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">🍷 Food</button>
+        <button class="filter-btn" onclick="filterEvents('art')" style="background: #f8f9fa; border: 2px solid #e9ecef; padding: 12px 25px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">🎨 Art</button>
+        <button class="filter-btn" onclick="filterEvents('sports')" style="background: #f8f9fa; border: 2px solid #e9ecef; padding: 12px 25px; border-radius: 25px; cursor: pointer; transition: all 0.3s ease;">🏃 Sports</button>
+    </div>
+
+    <div class="events-grid" id="eventsContainer" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(350px, 1fr)); gap: 30px; padding: 0 20px; max-width: 1200px; margin: 0 auto;">
+        <!-- Event 1 - AI Summit -->
+        <div class="event-card" data-category="tech" data-search="ai innovation summit technology artificial intelligence саммит инноваций ии" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
+            <div class="event-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; text-align: center; color: white;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🚀</div>
+                <div style="font-weight: 600; font-size: 1.2rem;">Tech Summit</div>
+            </div>
+            <div style="padding: 25px;">
+                <h3 class="event-title" style="font-size: 1.4rem; margin-bottom: 8px; color: #333; line-height: 1.3;">AI Innovation Summit</h3>
+                <h4 class="event-title-ru" style="font-size: 1rem; margin-bottom: 15px; color: #666; font-weight: 500; line-height: 1.3;">Саммит Инноваций ИИ</h4>
+                <div class="event-date" style="color: #667eea; font-weight: 600; margin-bottom: 15px; font-size: 0.9rem;">📅 March 15, 2026 • 9:00 AM</div>
+                <p class="event-description" style="color: #555; line-height: 1.5; margin-bottom: 8px; font-size: 0.95rem;">Explore the future of artificial intelligence with industry leaders and innovators.</p>
+                <p class="event-description-ru" style="opacity: 0.8; font-style: italic; color: #777; line-height: 1.5; margin-bottom: 20px; font-size: 0.9rem;">Исследуйте будущее искусственного интеллекта с лидерами отрасли.</p>
+                <div class="event-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="color: #666; font-size: 0.9rem;">📍 Tech Convention Center</span>
+                    <span class="event-type" style="background: #667eea; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem;">$149</span>
+                </div>
+                <a href="{% url 'events:event_detail' 1 %}" class="btn" style="display: block; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 0.95rem;">Get Tickets / Купить билеты</a>
+            </div>
+        </div>
+
+        <!-- Event 2 - Concert -->
+        <div class="event-card" data-category="music" data-search="rock the city festival concert music live performance фестиваль рок-музыки" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
+            <div class="event-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 25px; text-align: center; color: white;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🎸</div>
+                <div style="font-weight: 600; font-size: 1.2rem;">Live Concert</div>
+            </div>
+            <div style="padding: 25px;">
+                <h3 class="event-title" style="font-size: 1.4rem; margin-bottom: 8px; color: #333; line-height: 1.3;">Rock the City Festival</h3>
+                <h4 class="event-title-ru" style="font-size: 1rem; margin-bottom: 15px; color: #666; font-weight: 500; line-height: 1.3;">Фестиваль Рок-Музыки</h4>
+                <div class="event-date" style="color: #f5576c; font-weight: 600; margin-bottom: 15px; font-size: 0.9rem;">📅 March 22, 2026 • 7:00 PM</div>
+                <p class="event-description" style="color: #555; line-height: 1.5; margin-bottom: 8px; font-size: 0.95rem;">A night of epic rock performances with top international artists.</p>
+                <p class="event-description-ru" style="opacity: 0.8; font-style: italic; color: #777; line-height: 1.5; margin-bottom: 20px; font-size: 0.9rem;">Ночь эпических рок-выступлений с лучшими артистами.</p>
+                <div class="event-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="color: #666; font-size: 0.9rem;">📍 City Stadium</span>
+                    <span class="event-type" style="background: #f5576c; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem;">$75</span>
+                </div>
+                <a href="{% url 'events:event_detail' 2 %}" class="btn" style="display: block; text-align: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 0.95rem;">Get Tickets / Купить билеты</a>
+            </div>
+        </div>
+
+        <!-- Event 3 - Food & Wine -->
+        <div class="event-card" data-category="food" data-search="wine cheese expo food culinary wine tasting экспо вина сыра" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
+            <div class="event-header" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); padding: 25px; text-align: center; color: white;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🍷</div>
+                <div style="font-weight: 600; font-size: 1.2rem;">Food & Wine</div>
+            </div>
+            <div style="padding: 25px;">
+                <h3 class="event-title" style="font-size: 1.4rem; margin-bottom: 8px; color: #333; line-height: 1.3;">Wine & Cheese Expo</h3>
+                <h4 class="event-title-ru" style="font-size: 1rem; margin-bottom: 15px; color: #666; font-weight: 500; line-height: 1.3;">Экспо Вина и Сыра</h4>
+                <div class="event-date" style="color: #4facfe; font-weight: 600; margin-bottom: 15px; font-size: 0.9rem;">📅 April 5, 2026 • 6:30 PM</div>
+                <p class="event-description" style="color: #555; line-height: 1.5; margin-bottom: 8px; font-size: 0.95rem;">An exquisite evening of fine wines and artisanal cheeses from around the world.</p>
+                <p class="event-description-ru" style="opacity: 0.8; font-style: italic; color: #777; line-height: 1.5; margin-bottom: 20px; font-size: 0.9rem;">Изысканный вечер изысканных вин и сыров со всего мира.</p>
+                <div class="event-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="color: #666; font-size: 0.9rem;">📍 Grand Hotel Ballroom</span>
+                    <span class="event-type" style="background: #4facfe; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem;">$95</span>
+                </div>
+                <a href="{% url 'events:event_detail' 3 %}" class="btn" style="display: block; text-align: center; background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 0.95rem;">Get Tickets / Купить билеты</a>
+            </div>
+        </div>
+
+        <!-- Event 4 - Dance -->
+        <div class="event-card" data-category="music" data-search="latin dance night salsa bachata merengue танцевальная ночь сальса бачата" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
+            <div class="event-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; text-align: center; color: white;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">💃</div>
+                <div style="font-weight: 600; font-size: 1.2rem;">Dance Night</div>
+            </div>
+            <div style="padding: 25px;">
+                <h3 class="event-title" style="font-size: 1.4rem; margin-bottom: 8px; color: #333; line-height: 1.3;">Latin Dance Night</h3>
+                <h4 class="event-title-ru" style="font-size: 1rem; margin-bottom: 15px; color: #666; font-weight: 500; line-height: 1.3;">Латиноамериканская Танцевальная Ночь</h4>
+                <div class="event-date" style="color: #667eea; font-weight: 600; margin-bottom: 15px; font-size: 0.9rem;">📅 April 12, 2026 • 8:00 PM</div>
+                <p class="event-description" style="color: #555; line-height: 1.5; margin-bottom: 8px; font-size: 0.95rem;">Salsa, Bachata, and Merengue with professional dancers and live music.</p>
+                <p class="event-description-ru" style="opacity: 0.8; font-style: italic; color: #777; line-height: 1.5; margin-bottom: 20px; font-size: 0.9rem;">Сальса, Бачата и Меренге с профессиональными танцорами.</p>
+                <div class="event-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="color: #666; font-size: 0.9rem;">📍 Latin Dance Studio</span>
+                    <span class="event-type" style="background: #667eea; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem;">$35</span>
+                </div>
+                <a href="{% url 'events:event_detail' 4 %}" class="btn" style="display: block; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 0.95rem;">Get Tickets / Купить билеты</a>
+            </div>
+        </div>
+
+        <!-- Event 5 - Art -->
+        <div class="event-card" data-category="art" data-search="modern art exhibition gallery contemporary artists выставка современного искусства" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
+            <div class="event-header" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 25px; text-align: center; color: white;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🎨</div>
+                <div style="font-weight: 600; font-size: 1.2rem;">Art Exhibition</div>
+            </div>
+            <div style="padding: 25px;">
+                <h3 class="event-title" style="font-size: 1.4rem; margin-bottom: 8px; color: #333; line-height: 1.3;">Modern Art Exhibition</h3>
+                <h4 class="event-title-ru" style="font-size: 1rem; margin-bottom: 15px; color: #666; font-weight: 500; line-height: 1.3;">Выставка Современного Искусства</h4>
+                <div class="event-date" style="color: #667eea; font-weight: 600; margin-bottom: 15px; font-size: 0.9rem;">📅 April 18, 2026 • 10:00 AM</div>
+                <p class="event-description" style="color: #555; line-height: 1.5; margin-bottom: 8px; font-size: 0.95rem;">Featuring contemporary artists and interactive installations.</p>
+                <p class="event-description-ru" style="opacity: 0.8; font-style: italic; color: #777; line-height: 1.5; margin-bottom: 20px; font-size: 0.9rem;">Современные художники и интерактивные инсталляции.</p>
+                <div class="event-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="color: #666; font-size: 0.9rem;">📍 Modern Art Museum</span>
+                    <span class="event-type" style="background: #667eea; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem;">Free</span>
+                </div>
+                <a href="{% url 'events:event_detail' 5 %}" class="btn" style="display: block; text-align: center; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 0.95rem;">Register Now / Зарегистрироваться</a>
+            </div>
+        </div>
+
+        <!-- Event 6 - Sports -->
+        <div class="event-card" data-category="sports" data-search="city marathon running sports race городской марафон бег" style="background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 10px 30px rgba(0,0,0,0.1); transition: all 0.3s ease; border: 1px solid #f0f0f0;">
+            <div class="event-header" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); padding: 25px; text-align: center; color: white;">
+                <div style="font-size: 2rem; margin-bottom: 10px;">🏃</div>
+                <div style="font-weight: 600; font-size: 1.2rem;">Sports Event</div>
+            </div>
+            <div style="padding: 25px;">
+                <h3 class="event-title" style="font-size: 1.4rem; margin-bottom: 8px; color: #333; line-height: 1.3;">City Marathon 2026</h3>
+                <h4 class="event-title-ru" style="font-size: 1rem; margin-bottom: 15px; color: #666; font-weight: 500; line-height: 1.3;">Городской Марафон 2026</h4>
+                <div class="event-date" style="color: #f5576c; font-weight: 600; margin-bottom: 15px; font-size: 0.9rem;">📅 May 1, 2026 • 7:00 AM</div>
+                <p class="event-description" style="color: #555; line-height: 1.5; margin-bottom: 8px; font-size: 0.95rem;">Annual city marathon with routes through historic downtown areas.</p>
+                <p class="event-description-ru" style="opacity: 0.8; font-style: italic; color: #777; line-height: 1.5; margin-bottom: 20px; font-size: 0.9rem;">Ежегодный городской марафон по историческому центру.</p>
+                <div class="event-meta" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                    <span style="color: #666; font-size: 0.9rem;">📍 Central Park</span>
+                    <span class="event-type" style="background: #f5576c; color: white; padding: 5px 15px; border-radius: 15px; font-weight: 600; font-size: 0.9rem;">$45</span>
+                </div>
+                <a href="{% url 'events:event_detail' 6 %}" class="btn" style="display: block; text-align: center; background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); color: white; padding: 12px; border-radius: 10px; text-decoration: none; font-weight: 600; transition: all 0.3s ease; font-size: 0.95rem;">Register Now / Зарегистрироваться</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- No Results Message (Hidden by default) -->
+    <div id="noResults" style="display: none; text-align: center; padding: 60px 20px;">
+        <div style="font-size: 4rem; margin-bottom: 20px;">🔍</div>
+        <h3 style="color: #666; margin-bottom: 10px;">No events found</h3>
+        <p style="color: #888;">Try searching for different keywords or browse all events</p>
+        <button onclick="clearSearch()" style="background: #667eea; color: white; border: none; padding: 12px 30px; border-radius: 25px; cursor: pointer; font-weight: 600; margin-top: 20px;">Show All Events</button>
+    </div>
+
+    <!-- JavaScript for Search Functionality -->
+    <script>
+        let currentFilter = 'all';
+        let currentSearch = '';
+
+        function searchEvents() {
+            const searchInput = document.getElementById('searchInput');
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            currentSearch = searchTerm;
+            
+            const eventCards = document.querySelectorAll('.event-card');
+            let hasResults = false;
+
+            eventCards.forEach(card => {
+                const searchData = card.getAttribute('data-search').toLowerCase();
+                const category = card.getAttribute('data-category');
+                
+                // Check if card matches both search term and current filter
+                const matchesSearch = searchTerm === '' || searchData.includes(searchTerm);
+                const matchesFilter = currentFilter === 'all' || category === currentFilter;
+                
+                if (matchesSearch && matchesFilter) {
+                    card.style.display = 'block';
+                    hasResults = true;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            // Show/hide no results message
+            const noResults = document.getElementById('noResults');
+            const eventsContainer = document.getElementById('eventsContainer');
+            
+            if (!hasResults) {
+                eventsContainer.style.display = 'none';
+                noResults.style.display = 'block';
+            } else {
+                eventsContainer.style.display = 'grid';
+                noResults.style.display = 'none';
+            }
+        }
+
+        function filterEvents(category) {
+            currentFilter = category;
+            
+            // Update active filter button
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.style.background = '#f8f9fa';
+                btn.style.color = '#333';
+                btn.style.border = '2px solid #e9ecef';
+            });
+            
+            event.target.style.background = '#667eea';
+            event.target.style.color = 'white';
+            event.target.style.border = 'none';
+
+            // Apply search with current filter
+            searchEvents();
+        }
+
+        function clearSearch() {
+            document.getElementById('searchInput').value = '';
+            currentSearch = '';
+            currentFilter = 'all';
+            
+            // Reset filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.style.background = '#f8f9fa';
+                btn.style.color = '#333';
+                btn.style.border = '2px solid #e9ecef';
+            });
+            document.querySelector('.filter-btn.active').style.background = '#667eea';
+            document.querySelector('.filter-btn.active').style.color = 'white';
+            document.querySelector('.filter-btn.active').style.border = 'none';
+            
+            // Show all events
+            document.querySelectorAll('.event-card').forEach(card => {
+                card.style.display = 'block';
+            });
+            
+            document.getElementById('eventsContainer').style.display = 'grid';
+            document.getElementById('noResults').style.display = 'none';
+        }
+
+        // Enable Enter key to search
+        document.getElementById('searchInput').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                searchEvents();
+            }
+        });
+
+        // Add hover effects with CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            .event-card:hover {
+                transform: translateY(-10px);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+            }
+            .filter-btn:hover {
+                background: #667eea !important;
+                color: white !important;
+                transform: translateY(-2px);
+            }
+            .btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</div>
+{% endblock %}
