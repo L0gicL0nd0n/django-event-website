@@ -23,3 +23,7 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+# Temporary files
+cd
+py
+"er diagram/"
